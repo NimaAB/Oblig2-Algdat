@@ -2,7 +2,11 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
+<<<<<<< HEAD
 /../../../../../../../../../:\Users\nimab\Desktop\OsloMet\3.semester H20\Alg&Datastukturer\Oblig2-Algdat\.idea/dataSources/
+=======
+/../../../../../../../../../../:\Users\nimab\Desktop\OsloMet-fag og semster\2.semester V20\DATA1600\Uke 3\Oblig2-Algdat\.idea/dataSources/
+>>>>>>> 5d35d745802937a7655c0adbbd08c80eeae991f2
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
