@@ -76,6 +76,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
+        System.out.println("Hode: " + hode.verdi);
+        System.out.println("Hale: " + hale.verdi);
         return antall;
     }
 

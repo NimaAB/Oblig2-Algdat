@@ -1,8 +1,6 @@
 package no.oslomet.cs.algdat;
 public class Main {
     public static void main(String[] args){
-        Liste<Integer> liste_null = new DobbeltLenketListe<>(null);
-
         Integer[] arr_tom = {};
         Integer[] arr_int = {1,2,3};
         Liste<Integer> liste_tom = new DobbeltLenketListe<>(arr_tom);
