@@ -7,7 +7,7 @@ public class Main {
         Liste<Integer> liste_int = new DobbeltLenketListe<>(arr_int);
 
         ////////// METODE SJEKK: antall() og tom() /////////////////////////////////////////////////////////////////////
-        //System.out.println("Liste tom: Antall = " + liste_tom.antall());
+        System.out.println("Liste tom: Antall = " + liste_tom.antall());
         System.out.println("Liste int: Antall = " + liste_int.antall());
 
     }
