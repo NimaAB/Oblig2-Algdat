@@ -53,8 +53,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Parameter Kontroll
         Objects.requireNonNull(a,"Ugyldig Array: null");
 
+        Node<T> temp = null; // Node som beholder noden bak
+        Node<T> curr = null; // Node som beholder noden vi er på
         for(T element : a){
             if(element != null){
+                if(hode == null){
+                    hode = new Node<>(element);
+                    temp = hode;
+                    curr = new Node<>(element);
+                    curr.forrige = temp;
+                    temp.neste = curr;
+                    temp = curr;
+                }
                 antall++;
             }
         }
