@@ -50,7 +50,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+        // Parameter Kontroll
+        Objects.requireNonNull(a,"Ugyldig Array: null");
     }
 
     public Liste<T> subliste(int fra, int til){
