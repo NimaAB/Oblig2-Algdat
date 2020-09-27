@@ -69,6 +69,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 antall++;
             }
         }
+        hale = curr;
     }
 
     public Liste<T> subliste(int fra, int til){
