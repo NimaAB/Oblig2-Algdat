@@ -52,6 +52,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe(T[] a) {
         // Parameter Kontroll
         Objects.requireNonNull(a,"Ugyldig Array: null");
+
+        for(T element : a){
+            if(element != null){
+                antall++;
+            }
+        }
     }
 
     public Liste<T> subliste(int fra, int til){
