@@ -57,9 +57,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> curr = null; // Node som beholder noden vi er på
         for(T element : a){
             if(element != null){
-                if(hode == null){
+                if (hode == null) {
                     hode = new Node<>(element);
                     temp = hode;
+                } else {
                     curr = new Node<>(element);
                     curr.forrige = temp;
                     temp.neste = curr;
