@@ -277,6 +277,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if(p != null && r != null){
                 p.neste = r;
                 r.forrige = p;
+                antall--;
                 return true;
             }
         }
@@ -291,7 +292,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         T toRemove = hent(indeks);
         fjern(hent(indeks));
-        antall--;
         return toRemove;
     }
 
