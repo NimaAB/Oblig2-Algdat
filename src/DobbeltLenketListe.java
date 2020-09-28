@@ -123,6 +123,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale = new Node<>(verdi);
             hode.neste = hale;
             hale.forrige = hode;
+            hale.neste=null;
             antall++;
             return true;
 
@@ -132,39 +133,40 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             nyHale.forrige = hale;
             hale.neste = nyHale;
             hale = nyHale;
+            hale.neste=null;
             antall++;
             return true;
         }
-
     }
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        //feil indeks nummer:
-        if(indeks<0 || indeks>=antall) throw new IndexOutOfBoundsException("Feil index");
+        //parameter kontroll: (indeksKontroll gir fortsatt et feil jeg ikke forstår!)
+        if(verdi==null){
+            throw new NullPointerException("Verdien er null!");
+        }
+        indeksKontroll(antall,false);
+
         //legg inn:
         Node<T> nyNode = new Node<>(verdi);
-        if(hode==null){
-            hode = hale = nyNode;
-        }else if(indeks==antall-1){
-            nyNode.neste = null;
-            nyNode.forrige=hale.forrige;
-            hale.forrige = nyNode;
-            hale = nyNode;
-        }else if(indeks==0){
-            nyNode.forrige=null;
-            nyNode.neste = hode.neste;
-            hode.neste.forrige = nyNode;
-            hode = nyNode;
-        } else {
-            Node<T> curr = finnNode(indeks);
-            nyNode.neste = curr.neste;
-            nyNode.forrige = curr.forrige;
-            curr.forrige.neste = nyNode;
-            curr.neste.forrige = nyNode;
+        //hvis listen er tom || har et element || index tilsvarer posisjonen til hale:
+        boolean erLagtTil = leggInn(verdi);
+        if(!erLagtTil){
+            if(indeks==0){ //i plassen til hode
+                nyNode.forrige = null;
+                nyNode.neste = hode;
+                hode.forrige = nyNode;
+                hode = nyNode;
+            }else { //mellom to noder
+                Node<T> curr = finnNode(indeks);
+                curr.neste.forrige=nyNode;
+                nyNode.neste=curr.neste;
+                nyNode.forrige=curr;
+                curr.neste=nyNode;
+            }
+            antall++;
+            endringer++;
         }
-        endringer++;
-
     }
 
     @Override
@@ -292,6 +294,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         T toRemove = hent(indeks);
         fjern(hent(indeks));
+        antall--;
         return toRemove;
     }
 
