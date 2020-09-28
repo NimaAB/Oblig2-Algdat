@@ -230,6 +230,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Hvis det finnes kun et element
         else if(antall == 1){
             hode = null;
+            hale = null;
             antall--;
             return true;
         }
