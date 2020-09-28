@@ -119,7 +119,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         // Hvis listen har et element
-        else if(antall == 1){
+        else if(antall==1){
             hale = new Node<>(verdi);
             hode.neste = hale;
             hale.forrige = hode;
