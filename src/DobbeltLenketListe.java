@@ -154,8 +154,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return finnNode(indeks).verdi;
     }
 
-    private Node<T> finnNode(int indeks){
-        //if(indeks < 0 || indeks >= antall) throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
+    private Node<T> finnNode(int indeks) {
+        /*if(indeks < 0 || indeks >= antall) {
+            throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
+        }*/
+
         int grense = antall / 2;
 
         Node<T> returnVerdi = null;
