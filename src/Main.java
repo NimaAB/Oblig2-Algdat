@@ -24,11 +24,18 @@ public class Main {
         System.out.println("Et element omvendt: " + liste_enEl.omvendtString());
         System.out.println("tom liste: " + liste_tom.omvendtString());
 
-        ////////// METODE SJEKK: antall() og tom() /////////////////////////////////////////////////////////////////////
+        // Tester antall() og tom()
         System.out.println(liste_tom.antall() + " " + liste_tom.tom());
         System.out.println(liste_str.antall() + " " + liste_str.tom());
 
-        System.out.println();
+        // Tester fjern(indeks) og fjern(verdi)
+        System.out.println("Original Array: " + liste_str.toString());
+
+        liste_str.fjern(0);
+        System.out.println("Etter fjerning av indeksen 0: " + liste_str.toString());
+
+        liste_str.fjern("Kari");
+        System.out.println("Etter fjerning av verdien Kari: " + liste_str.toString());
 
     }
 }
