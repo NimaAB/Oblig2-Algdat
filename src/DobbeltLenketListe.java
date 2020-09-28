@@ -141,11 +141,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             listStr.append(current.verdi).append(",");
             current = current.neste;
         }
-        //listStr.append(hale.verdi).append("]");
+        listStr.append(hale.verdi).append("]");
         return listStr.toString();
     }
 
     public String omvendtString() {
+        if(hode ==  hale || hale == null){
+            return toString();
+        }
         StringBuilder listStr=new StringBuilder("[");
         Node<T> current = hale;
         while(current!=hode){
