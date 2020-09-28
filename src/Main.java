@@ -28,7 +28,7 @@ public class Main {
         System.out.println(liste_tom.antall() + " " + liste_tom.tom());
         System.out.println(liste_str.antall() + " " + liste_str.tom());
 
-
+        System.out.println();
 
     }
 }

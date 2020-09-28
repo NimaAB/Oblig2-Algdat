@@ -123,7 +123,40 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks,false);
+        return finnNode(indeks).verdi;
+    }
+
+    private Node<T> finnNode(int indeks){
+        if(indeks < 0 || indeks >= antall) throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
+        int grense = antall / 2;
+
+        if(indeks == 0){
+            return hode;
+        } else if(indeks == antall - 1){
+            return hale;
+        } else if(indeks <= grense){
+            int i = 0;
+            Node<T> curr = hode;
+            while(i <= grense){
+                if(i == indeks){
+                    return curr;
+                }
+                curr = curr.neste;
+                i++;
+            }
+        }
+
+        int i = antall - 1;
+        Node<T> curr = hale;
+        while(i > grense){
+            if(i == indeks){
+                return curr;
+            }
+            curr = curr.forrige;
+            i--;
+        }
+
     }
 
     @Override
