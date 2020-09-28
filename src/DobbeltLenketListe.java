@@ -131,32 +131,36 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(indeks < 0 || indeks >= antall) throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
         int grense = antall / 2;
 
+
+        Node<T> returnVerdi = null;
         if(indeks == 0){
-            return hode;
+            returnVerdi = hode;
         } else if(indeks == antall - 1){
-            return hale;
-        } else if(indeks <= grense){
-            int i = 0;
-            Node<T> curr = hode;
-            while(i <= grense){
-                if(i == indeks){
-                    return curr;
+            returnVerdi = hale;
+        } else{
+            if(indeks <= grense){
+                int i = 0;
+                Node<T> curr = hode;
+                while(i <= grense){
+                    if(i == indeks){
+                        returnVerdi = curr;
+                    }
+                    curr = curr.neste;
+                    i++;
                 }
-                curr = curr.neste;
-                i++;
+            }else{
+                int i = antall - 1;
+                Node<T> curr = hale;
+                while(i > grense){
+                    if(i == indeks){
+                        returnVerdi = curr;
+                    }
+                    curr = curr.forrige;
+                    i--;
+                }
             }
         }
-
-        int i = antall - 1;
-        Node<T> curr = hale;
-        while(i > grense){
-            if(i == indeks){
-                return curr;
-            }
-            curr = curr.forrige;
-            i--;
-        }
-
+        return returnVerdi;
     }
 
     @Override
