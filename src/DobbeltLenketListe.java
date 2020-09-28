@@ -142,10 +142,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void leggInn(int indeks, T verdi) {
         //parameter kontroll: (indeksKontroll gir fortsatt et feil jeg ikke forstår!)
-        if(verdi==null){
-            throw new NullPointerException("Verdien er null!");
-        }
-        indeksKontroll(antall,false);
+        Objects.requireNonNull(verdi,"Verdi kan ikke være null!");
+        indeksKontroll(antall(),false);
 
         //legg inn:
         Node<T> nyNode = new Node<>(verdi);
@@ -279,7 +277,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if(p != null && r != null){
                 p.neste = r;
                 r.forrige = p;
-                antall--;
                 return true;
             }
         }
