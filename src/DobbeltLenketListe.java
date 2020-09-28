@@ -1,6 +1,5 @@
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
-
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
@@ -9,8 +8,6 @@ import java.util.StringJoiner;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Predicate;
-
-
 
 public class DobbeltLenketListe<T> implements Liste<T> {
 
@@ -67,6 +64,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til){
+        // Parameter Kontoll
         fratilKontroll(antall,fra,til);
 
         //lager en sub_liste:
@@ -109,33 +107,35 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
+        // Parameter Kontroll
         Objects.requireNonNull(verdi, "Verdien kan ikke være null");
-        boolean returVerdi = false;
 
-        // if listen er tomt
+        // Hvis listen er tomt
         if(tom()){
             hode = new Node<>(verdi);
             hale = hode;
             antall++;
-            returVerdi = true;
+            return true;
         }
-        // if listen har et element
+
+        // Hvis listen har et element
         else if(antall == 1){
             hale = new Node<>(verdi);
             hode.neste = hale;
             hale.forrige = hode;
             antall++;
-            returVerdi = true;
+            return true;
+
+        // Hvis listen har flere elementer
         } else {
             Node<T> nyHale = new Node<>(verdi);
             nyHale.forrige = hale;
             hale.neste = nyHale;
             hale = nyHale;
             antall++;
-            returVerdi = true;
+            return true;
         }
 
-        return returVerdi;
     }
 
     @Override
@@ -155,13 +155,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks) {
-        /*if(indeks < 0 || indeks >= antall) {
-            throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
-        }*/
-
         int grense = antall / 2;
-
         Node<T> returnVerdi = null;
+
         if(indeks == 0){
             returnVerdi = hode;
         } else if(indeks == antall - 1){
@@ -194,7 +190,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-       if(verdi==null) return -1;
+       if(verdi == null) return -1;
        Node<T> curr = hode;
        int i =0;
        while(i<antall){
@@ -209,7 +205,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
+        // Parameter Kontroll
         Objects.requireNonNull(nyverdi,"Error: Ny er lik null!");
+        indeksKontroll(indeks,false);
+
         Node<T> gammelNode = finnNode(indeks);
         T gammelVerdig = gammelNode.verdi;
         gammelNode.verdi = nyverdi;
@@ -264,6 +263,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
+        // Parameter Kontroll
+        indeksKontroll(indeks,false);
+
         T toRemove = hent(indeks);
         fjern(hent(indeks));
         return toRemove;
@@ -276,10 +278,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        if(hode==null){
+        if(hode == null){
             return "[]";
         }
-        if(hale==hode){
+        if(hale == hode){
             return "["+hode.verdi+"]";
         }
         StringBuilder listStr=new StringBuilder("[");
