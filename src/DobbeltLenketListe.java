@@ -155,7 +155,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks){
-        if(indeks < 0 || indeks >= antall) throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
+        //if(indeks < 0 || indeks >= antall) throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
         int grense = antall / 2;
 
         Node<T> returnVerdi = null;
@@ -163,7 +163,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             returnVerdi = hode;
         } else if(indeks == antall - 1){
             returnVerdi = hale;
-        } else{
+        } else {
             if(indeks <= grense){
                 int i = 0;
                 Node<T> curr = hode;
@@ -174,7 +174,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     curr = curr.neste;
                     i++;
                 }
-            }else{
+            } else {
                 int i = antall - 1;
                 Node<T> curr = hale;
                 while(i > grense){
@@ -216,6 +216,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
+        if(verdi == null) return false;
+        if(hode == null) return false;
+
         // Hvis vi fjerner fra første plassen
         if(verdi.equals(hode.verdi) && hode.neste != null){
             hode = hode.neste;
@@ -224,7 +227,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return true;
         }
 
-        // Hvisdet finnes kun et element
+        // Hvis det finnes kun et element
         else if(antall == 1){
             hode = null;
             antall--;
@@ -257,7 +260,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        T toRemove = hent(indeks);
+        fjern(hent(indeks));
+        return toRemove;
     }
 
     @Override
