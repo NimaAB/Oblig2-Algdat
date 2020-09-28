@@ -35,5 +35,10 @@ public class Main {
         liste_str.fjern("Kari");
         System.out.println("Etter fjerning av verdien Kari: " + liste_str.toString());
 
+        // Testeter nullstill()
+        System.out.println("Listen før nullstilling: " + liste_int.toString());
+        liste_int.nullstill();
+        System.out.println("Listen etter nullstilling: " + liste_int.toString());
+
     }
 }
