@@ -131,7 +131,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(indeks < 0 || indeks >= antall) throw new IndexOutOfBoundsException("Arrayet av størrelse " + antall + " med en indeks: " + indeks);
         int grense = antall / 2;
 
-
         Node<T> returnVerdi = null;
         if(indeks == 0){
             returnVerdi = hode;
@@ -170,7 +169,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(nyverdi,"Error: Ny er lik null!");
+        Node<T> gammelNode = finnNode(indeks);
+        T gammelVerdig = gammelNode.verdi;
+        gammelNode.verdi = nyverdi;
+        endringer++;
+        return gammelVerdig;
     }
 
     @Override
