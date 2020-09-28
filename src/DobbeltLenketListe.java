@@ -50,23 +50,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Parameter Kontroll
         Objects.requireNonNull(a,"Ugyldig Array: null");
 
-        Node<T> temp = null; // Node som beholder noden bak
-        Node<T> curr = null; // Node som beholder noden vi er på
+        Node<T> curr; // Node som beholder noden vi er på
         for(T element : a){
             if(element != null){
                 if (hode == null) {
-                    hode = new Node<>(element);
-                    temp = hode;
+                    hode = hale = new Node<>(element);
                 } else {
                     curr = new Node<>(element);
-                    curr.forrige = temp;
-                    temp.neste = curr;
-                    temp = curr;
+                    hale.neste = curr;
+                    curr.forrige = hale;
+                    hale = curr;
                 }
                 antall++;
             }
         }
-        hale = curr;
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -85,7 +82,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+
+
+        return true;
     }
 
     @Override
@@ -130,13 +129,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
+        if(hode==null){
+            return "[]";
+        }
+        if(hale==hode){
+            return "["+hode.verdi+"]";
+        }
         StringBuilder listStr=new StringBuilder("[");
         Node<T> current = hode;
         while(current!=hale){
             listStr.append(current.verdi).append(",");
             current = current.neste;
         }
-        listStr.append(hale.verdi).append("]");
+        //listStr.append(hale.verdi).append("]");
         return listStr.toString();
     }
 
