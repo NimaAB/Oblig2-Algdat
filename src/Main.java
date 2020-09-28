@@ -23,9 +23,12 @@ public class Main {
 
         System.out.println("Et element omvendt: " + liste_enEl.omvendtString());
         System.out.println("tom liste: " + liste_tom.omvendtString());
+
         ////////// METODE SJEKK: antall() og tom() /////////////////////////////////////////////////////////////////////
         System.out.println(liste_tom.antall() + " " + liste_tom.tom());
         System.out.println(liste_str.antall() + " " + liste_str.tom());
+
+
 
     }
 }
