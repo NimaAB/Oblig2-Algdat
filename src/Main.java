@@ -11,8 +11,6 @@ public class Main {
         Liste<String> liste_str = new DobbeltLenketListe<>(arr_str);
         DobbeltLenketListe<Integer> liste_enEl=new DobbeltLenketListe<>(new Integer[]{1});
 
-
-
         //Tester toString og omvendt metoden:
         System.out.println(Arrays.toString(arr_int));
         System.out.println("ToString fra dListe: " + liste_int.toString());
