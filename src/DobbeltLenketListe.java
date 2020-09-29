@@ -116,6 +116,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hode = new Node<>(verdi);
             hale = hode;
             antall++;
+            endringer++;
             return true;
         }
         // Hvis listen har et element eller flere:
@@ -126,6 +127,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale = nyHale;
             hale.neste=null;
             antall++;
+            endringer++;
             return true;
         }else{
             return false;
@@ -173,6 +175,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 current.neste.forrige = nyNode;
             }
             antall++;
+            endringer++;
         }
     }
 
@@ -259,6 +262,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hode = hode.neste;
             hode.forrige = null;
             antall--;
+            endringer++;
             return true;
         }
 
@@ -267,6 +271,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hode = null;
             hale = null;
             antall--;
+            endringer++;
             return true;
         }
 
@@ -275,6 +280,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale = hale.forrige;
             hale.neste = null;
             antall--;
+            endringer++;
             return true;
         }
 
@@ -287,6 +293,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 p.neste = r;
                 r.forrige = p;
                 antall--;
+                endringer++;
                 return true;
             }
         }
@@ -306,10 +313,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void nullstill() {
-        hode = null;
-        hale = null;
+
+        Node<T> current = hode;
+        while(current != null){
+            current = null;
+            current = hode.neste;
+            hode = current;
+            endringer++;
+        }
         antall = 0;
-        endringer = 0;
+
     }
 
     @Override
@@ -331,7 +344,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public String omvendtString() {
-        if(hode ==  hale || hale == null){
+        if(hode ==  hale || hode == null){
             return toString();
         }
         StringBuilder listStr=new StringBuilder("[");

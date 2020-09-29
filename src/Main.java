@@ -39,6 +39,12 @@ public class Main {
         System.out.println("Listen før nullstilling: " + liste_int.toString());
         liste_int.nullstill();
         System.out.println("Listen etter nullstilling: " + liste_int.toString());
+        //Test for each:
 
+        String[] navn = { "Lars" , "Anders" , "Bodil" , "Kari" , "Per" , "Berit" };
+        Liste<String> liste = new DobbeltLenketListe<>(navn);
+        liste.forEach(s -> System. out .print(s + " " ));
+        System. out .println();
+        for (String s : liste) System. out .print(s + " " );
     }
 }
