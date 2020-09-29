@@ -158,7 +158,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         //Tom liste:
         else if(hode==null){
-            hode = new Node<>(verdi);
+            hode = nyNode;
             hale = hode;
         }
         //indeks er posisjonen etter hale eller posisjonen til hale:
@@ -167,6 +167,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale.neste = nyNode;
             hale = nyNode;
             hale.neste=null;
+        }
+        //hvis index == 0:
+        else if(indeks==0){
+            nyNode.forrige=null;
+            nyNode.neste = hode;
+            hode.forrige = nyNode;
+            hode = nyNode;
         }
         //Mellom to noder:
         else{
