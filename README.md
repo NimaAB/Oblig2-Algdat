@@ -19,14 +19,12 @@ Oppgaven er levert av følgende studenter:
 
 Vi har brukt git til å dokumentere arbeidet vårt. Vi har 16 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
-I oppgaven har vi hatt følgende arbeidsfordeling:
-* Per har hatt hovedansvar for oppgave 1, 3, og 5. 
-* Else har hatt hovedansvar for oppgave 2, 4, og 6. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8. 
-* Vi har i fellesskap løst oppgave 10. 
+I oppgaven har vi hatt følgende arbeidsfordeling: 
+* Vi har i fellesskap løst alle oppgavene fra og med 1 til og med 8. 
 
 # Beskrivelse av oppgaveløsning (maks 5 linjer per oppgave)
 
-* Oppgave 1: Løste ved å implementere..
+* Oppgave 1: Klassen DobeltLenketListe har attributten antall som vi bruker for å returene en boolean i tom() metoden slik ` if(antall == 0) return true;`
+    og vi bruker samme attributt for å returne en int antall `return antall;` i metoden antall().
 * Oppgave 2: ...
 
