@@ -14,10 +14,10 @@ Se oblig-tekst for alle krav. Oppgaver som ikke oppfyller følgende vil ikke få
 # Arbeidsfordeling
 
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S981737, s981737@oslomet.no
+* Nima Abdollahi, S341890, s341890@oslomet.no
 * ...
 
-Vi har brukt git til å dokumentere arbeidet vårt. Vi har 16 commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
+Vi har brukt git til å dokumentere arbeidet vårt. Vi har <16> commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling: 
 * Vi har i fellesskap løst alle oppgavene fra og med 1 til og med 8. 
@@ -47,6 +47,40 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     hvis listen er tom, da sier vi at hode og hale pekkere er node(verdi). Den andre tilfillen er om listen har en eller flere noder,
     da sier vi nyNode sin netse er null og sin forrige er hale, hale sin neste er nyNode og hale nå er nyNode.
     ```
+    
+* Oppgave 4:
+	``` 
+	Løsningen til indeksTil(verdi) begynner med å sjekke parameteren T verdi
+    hvis det null da returnerer vi -1 som et tegn på at det ikke finnes i listen. 
+    Etter det begynner vi med å lage en peker på hode og går gjennom noden 
+    ved å kalle på pekeren sin neste node for hver iterasjon.
+	Og i hver iterasjon sjekker vi om pekeren sin verdi er lik parameter verdien
+    hvis det returner vi vår teller variabel i.
+    hvis løkken  slutter uten resultat da returnerer den -1. 
+	Og metoden "boolean inneholder(T verdi)" sjekker om indeksTil(verdi) er ikke lik -1.
+	```
+	
+* Oppgave 6:
+	``` 
+	boolean fjern(T verdi) metoden begynner med en parameter sjekk om verdi er ikke null og listen er ikke tom hvis det returnerer false.
+	Metoden sjekker tre tilfeller:
+		1. Verdien er lik hode.verdi og listen er ikke tom: peker flytes fra hode.
+		2. Listen har en node: både hode og hale blir null.
+		3. Verdien er lik hale.verdi: flyttes peker fra hale til null og den forrige node er hale.
+		4. Ellers(sletter vi en node mellom to andre noder): 
+        finner indeksen til denne verdien vi skal slette. Bruker indeksen for å finne en bak og en foran denne noden
+        med denne verdien. Og hvis ingen av dem er null så flytter vi neste og forrige pekere over denne noden i midten. 
+	
+	T fjern(int indeks): parameter kontroll, etterpå  hentes det verdien til noden 
+    i indeks ved hjelp av hent(indeks) og lagres i en variabel (toRemove) til slutt bruker
+    fjern(toRemove) og returnerer toRemove.
+	```
+
+* Oppgave 8:
+     ```
+     Vi har følget etter instruksjonen fra oppgaven.
+     ```
+
 
 
 
