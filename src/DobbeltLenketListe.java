@@ -108,8 +108,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean leggInn(T verdi) {
         // Parameter Kontroll
-        //Objects.requireNonNull(verdi, "Verdien kan ikke være null");
-        if(verdi==null) return false;
+        Objects.requireNonNull(verdi, "Verdien kan ikke være null");
+
 
         // Hvis listen er tomt
         if(tom()){
@@ -119,7 +119,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return true;
         }
         // Hvis listen har et element eller flere:
-        else{
+        else if(antall>0){
             Node<T> nyHale = new Node<>(verdi);
             nyHale.forrige = hale;
             hale.neste = nyHale;
@@ -127,6 +127,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale.neste=null;
             antall++;
             return true;
+        }else{
+            return false;
         }
     }
 
@@ -171,7 +173,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 current.neste.forrige = nyNode;
             }
             antall++;
-            endringer++;
         }
     }
 
