@@ -338,11 +338,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+        return new DobbeltLenketListeIterator();
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks,false);
+        return new DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T>
@@ -358,7 +359,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks){
-            throw new UnsupportedOperationException();
+            denne = finnNode(indeks);
+            fjernOK = false;
+            iteratorendringer = endringer;
         }
 
         @Override
@@ -368,7 +371,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next(){
-            throw new UnsupportedOperationException();
+            if(endringer != iteratorendringer)
+                throw new ConcurrentModificationException("Endringer er ikke oppdatert riktig");
+            if(!hasNext())
+                throw new NoSuchElementException("Listen har nådd siste noden");
+
+            fjernOK = true;
+            T returVerdi = denne.verdi;
+            denne = denne.neste;
+            return returVerdi;
         }
 
         @Override
