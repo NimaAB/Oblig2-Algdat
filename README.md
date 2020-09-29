@@ -26,5 +26,8 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 * Oppgave 1: Klassen DobeltLenketListe har attributten antall som vi bruker for å returene en boolean i tom() metoden slik ` if(antall == 0) return true;`
     og vi bruker samme attributt for å returne en int antall `return antall;` i metoden antall().
+    
+    Klassen DobbeltLenketListe(Array) : I utgangspunktet er hode og hale lik null. Først har vi et for-loop som itererer arrayet.
+    første element blir satt som hode og hale og hvis det finnes flere elemeter, blir de koblet til hverandre hvor siste element blir lik hale.
 * Oppgave 2: ...
 
