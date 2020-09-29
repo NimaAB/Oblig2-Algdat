@@ -143,7 +143,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void leggInn(int indeks, T verdi) {
         //parameter kontroll: (indeksKontroll gir fortsatt et feil jeg ikke forstår!)
         Objects.requireNonNull(verdi,"Verdi kan ikke være null!");
-        if(indeks < 0 || indeks > antall) throw new IndexOutOfBoundsException("Indeks: " + indeks + " Antall: " + antall);
+        if(indeks < 0 || indeks > antall-1) throw new IndexOutOfBoundsException("Indeks: " + indeks + " Antall: " + antall);
+        //indeksKontroll(indeks,false);
 
         //legg inn:
         Node<T> nyNode = new Node<>(verdi);
