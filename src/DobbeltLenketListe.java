@@ -126,9 +126,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale.neste=null;
             antall++;
             return true;
-
+        }
         // Hvis listen har flere elementer
-        } else {
+        else{
             Node<T> nyHale = new Node<>(verdi);
             nyHale.forrige = hale;
             hale.neste = nyHale;
@@ -141,31 +141,43 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        //parameter kontroll: (indeksKontroll gir fortsatt et feil jeg ikke forstår!)
+        //parameter kontroll:
         Objects.requireNonNull(verdi,"Verdi kan ikke være null!");
-        if(indeks < 0 || indeks > antall-1) throw new IndexOutOfBoundsException("Indeks: " + indeks + " Antall: " + antall);
-        //indeksKontroll(indeks,false);
+        indeksKontroll(indeks, false);
+
 
         //legg inn:
         Node<T> nyNode = new Node<>(verdi);
-        //hvis listen er tom || har et element || index tilsvarer posisjonen til hale:
-        boolean erLagtTil = leggInn(verdi);
-        if(!erLagtTil){
-            if(indeks==0){ //i plassen til hode
-                nyNode.forrige = null;
-                nyNode.neste = hode;
-                hode.forrige = nyNode;
-                hode = nyNode;
-            }else { //mellom to noder
-                Node<T> curr = finnNode(indeks);
-                curr.neste.forrige=nyNode;
-                nyNode.neste=curr.neste;
-                nyNode.forrige=curr;
-                curr.neste=nyNode;
-            }
-            antall++;
-            endringer++;
+
+        //Listen har et element:
+        if(hode==hale){
+            hale = nyNode;
+            hode.neste = hale;
+            hale.forrige = hode;
+            hale.neste=null;
         }
+        //Tom liste:
+        else if(hode==null){
+            hode = new Node<>(verdi);
+            hale = hode;
+        }
+        //indeks er posisjonen etter hale eller posisjonen til hale:
+        else if(indeks>=antall || indeks==antall-1){
+            nyNode.forrige = hale;
+            hale.neste = nyNode;
+            hale = nyNode;
+            hale.neste=null;
+        }
+        //Mellom to noder:
+        else{
+            Node<T> current = finnNode(indeks);
+            nyNode.neste = current.neste;
+            nyNode.forrige = current;
+            current.neste = nyNode;
+            current.neste.forrige = nyNode;
+        }
+        antall++;
+        endringer++;
     }
 
     @Override
