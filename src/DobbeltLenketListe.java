@@ -108,7 +108,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean leggInn(T verdi) {
         // Parameter Kontroll
-        Objects.requireNonNull(verdi, "Verdien kan ikke være null");
+        //Objects.requireNonNull(verdi, "Verdien kan ikke være null");
+        if(verdi==null) return false;
 
         // Hvis listen er tomt
         if(tom()){
@@ -117,17 +118,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             antall++;
             return true;
         }
-
-        // Hvis listen har et element
-        else if(antall==1){
-            hale = new Node<>(verdi);
-            hode.neste = hale;
-            hale.forrige = hode;
-            hale.neste=null;
-            antall++;
-            return true;
-        }
-        // Hvis listen har flere elementer
+        // Hvis listen har et element eller flere:
         else{
             Node<T> nyHale = new Node<>(verdi);
             nyHale.forrige = hale;
@@ -144,47 +135,44 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //parameter kontroll:
         Objects.requireNonNull(verdi,"Verdi kan ikke være null!");
         indeksKontroll(indeks, false);
-
+        if(indeks>antall){
+            indeks=antall;
+        }
 
         //legg inn:
         Node<T> nyNode = new Node<>(verdi);
 
-        //Listen har et element:
-        if(hode==hale){
-            hale = nyNode;
-            hode.neste = hale;
-            hale.forrige = hode;
-            hale.neste=null;
+        //Listen har et element eller tom:
+        boolean erLagtTil = false;
+        if(hode==hale||hode==null) {
+            erLagtTil = leggInn(verdi);
         }
-        //Tom liste:
-        else if(hode==null){
-            hode = nyNode;
-            hale = hode;
+        if(!erLagtTil) {
+            //indeks er posisjonen etter hale eller posisjonen til hale:
+            if (indeks >= antall || indeks == antall - 1) {
+                nyNode.forrige = hale;
+                hale.neste = nyNode;
+                hale = nyNode;
+                hale.neste = null;
+            }
+            //hvis index == 0:
+            else if (indeks == 0) {
+                nyNode.forrige = null;
+                nyNode.neste = hode;
+                hode.forrige = nyNode;
+                hode = nyNode;
+            }
+            //Mellom to noder:
+            else {
+                Node<T> current = finnNode(indeks);
+                nyNode.neste = current.neste;
+                nyNode.forrige = current;
+                current.neste = nyNode;
+                current.neste.forrige = nyNode;
+            }
+            antall++;
+            endringer++;
         }
-        //indeks er posisjonen etter hale eller posisjonen til hale:
-        else if(indeks>=antall || indeks==antall-1){
-            nyNode.forrige = hale;
-            hale.neste = nyNode;
-            hale = nyNode;
-            hale.neste=null;
-        }
-        //hvis index == 0:
-        else if(indeks==0){
-            nyNode.forrige=null;
-            nyNode.neste = hode;
-            hode.forrige = nyNode;
-            hode = nyNode;
-        }
-        //Mellom to noder:
-        else{
-            Node<T> current = finnNode(indeks);
-            nyNode.neste = current.neste;
-            nyNode.forrige = current;
-            current.neste = nyNode;
-            current.neste.forrige = nyNode;
-        }
-        antall++;
-        endringer++;
     }
 
     @Override
