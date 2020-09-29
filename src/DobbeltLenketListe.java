@@ -292,7 +292,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         indeksKontroll(indeks,false);
 
         T toRemove = hent(indeks);
-        fjern(hent(indeks));
+        fjern(toRemove);
         return toRemove;
     }
 
