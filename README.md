@@ -15,7 +15,7 @@ Se oblig-tekst for alle krav. Oppgaver som ikke oppfyller følgende vil ikke få
 
 Oppgaven er levert av følgende studenter:
 * Nima Abdollahi, S341890, s341890@oslomet.no
-* ...
+* Glaysa Fernandez, s344047, s344047@oslomet.no
 
 Vi har brukt git til å dokumentere arbeidet vårt. Vi har <16> commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
@@ -47,6 +47,24 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     hvis listen er tom, da sier vi at hode og hale pekkere er node(verdi). Den andre tilfillen er om listen har en eller flere noder,
     da sier vi nyNode sin netse er null og sin forrige er hale, hale sin neste er nyNode og hale nå er nyNode.
     ```
+* Oppgave 3:
+    ```
+    3a) finnNode(indeks), hent(indeks), oppdater(indeks, nyVerdi)
+    - Vi har først implementert finnNode(indeks) hvor vi først sjekker om indeks er lik 0 eller om indeks er lik antall - 1. Hvis en av de to er sant, returnerer vi hode eller hale.
+    - Hvis verken av de to er sant, kjører else-blokken. Hvis indeks er mindre enn antall / 2, itererer vi fra hode, men hvis det  er større,  itererer vi fra hale. 
+    - Vi har en "Node<T> curr" som hopper over nodene og samtidig en variabel "i" som øker/synker så lenge det er ikke lik indeks. 
+      Hvis "i" er lik indeks, returnerer vi noden "curr"
+    - "hent(indeks)" - vi har brukt "finnNode(indeks)" her, men den returener verdien istedenfor noden.
+    - "oppdater(indeks,nyVerdi)" - vi har først letet etter noden vi ønsker å oppdatere ved hjelp av "finnNode(indeks)"
+      og lagret nodens verdi i variablen "gammelVerdi". Vi satt noden sin verdi lik "nyVerdi" og returnert "gammelVerdi"
+      Her øker "endringer" variablen.
+      
+    3b) subliste(fra,til)
+    - Vi har først implementert "fraTilKontroll(fra, til)" som sjekker parameterne til subliste(fra,til).
+    - Vi har deklarert en tom "liste". Hvis "fra" er lik "til" returnerer vi en tom liste.
+    - Ved hjelp av "finnNode(fra)" fant vi noden til "fra" og brukte en while-loop som itererer gjennom listen så lenge "fra" er 
+      mindre enn "til". Vi har en "Node<T> curr" satt lik noden til "fra" som hopper over nodene og samtidig ved hjelp av "leggInn(curr.verdi)" lagret vi verdiene til "liste". Til slutt returnerte vi "liste".
+    ```
     
 * Oppgave 4:
 	``` 
@@ -59,7 +77,17 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     hvis løkken  slutter uten resultat da returnerer den -1. 
 	Og metoden "boolean inneholder(T verdi)" sjekker om indeksTil(verdi) er ikke lik -1.
 	```
-	
+* Oppgave 5: 
+	```
+	- leggInn(indeks,verdi) begynner med en parameter kontroll ved hjelp av indeksKontroll(indeks,false) og Objects.requireNonNull(verdi,melding). Indekser større en antall blir satt lik antall. 
+	- Vi har deklarert en ny node som har verdien lik som i parameteren.
+	- Vi har tatt hensyn på 4 tilfeller. 1) Listen er tom. 2) Vi legger ny noden bakerst 3) Vi legger ny noden forrest og 4) Vi legger ny noden mellom to noder.
+		1. Vi kaller leggInn(verdi) metoden i denne tilfelle.
+		2. Vi setter ny nodens forrige peker lik hale og hale sin neste peker lik ny noden. Etter det setter vi ny noden lik hale.
+		3. Her er det samme logikk som i tilfelle 3, forskjellen er at det er hode vi jobber med og at pekere har annerledes tilordninger.
+		4. Her finner vi noden vi skal flytte slik at ny noden får plass ved hjelp av finnNode(indeks) lagret i node variablen "current". "current" flytter seg foran og får en ny indeks, mens ny noden får "current" sin plass. Den har vi gjort ved å sette pekere til nodene riktig.
+	- Her øker variablene "antall" og "endringer".
+	```
 * Oppgave 6:
 	``` 
 	boolean fjern(T verdi) metoden begynner med en parameter sjekk om verdi er ikke null og listen er ikke tom hvis det returnerer false.
@@ -75,7 +103,11 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     i indeks ved hjelp av hent(indeks) og lagres i en variabel (toRemove) til slutt bruker
     fjern(toRemove) og returnerer toRemove.
 	```
-
+* Oppgave 7:
+	```
+	- I nullstill() metoden har vi en node kalt "current" satt lik hode.
+	- Vi har brukt en while-loop som itererer listen så lenge hode er ikke null. Så lenge hode er ikke null, hode blir satt lik sin neste node. I denne metoden øker vi endringer og antall synker.
+	```
 * Oppgave 8:
      ```
      Vi har følget etter instruksjonen fra oppgaven.
