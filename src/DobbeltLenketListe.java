@@ -112,67 +112,61 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
         // Hvis listen er tomt
-        if(tom()){
+        if(hode==null){
             hode = new Node<>(verdi);
             hale = hode;
-            antall++;
-            endringer++;
-            return true;
         }
         // Hvis listen har et element eller flere:
-        else if(antall>0){
+        else{
             Node<T> nyHale = new Node<>(verdi);
             nyHale.forrige = hale;
             hale.neste = nyHale;
             hale = nyHale;
             hale.neste=null;
-            antall++;
-            endringer++;
-            return true;
-        }else{
-            return false;
         }
+        antall++;
+        endringer++;
+        return true;
     }
 
     @Override
     public void leggInn(int indeks, T verdi) {
         //parameter kontroll:
         Objects.requireNonNull(verdi,"Verdi kan ikke være null!");
-        indeksKontroll(indeks, false);
-        if(indeks>antall){
-            indeks=antall;
-        }
+        if(indeks<0||indeks>=antall+1) throw new IndexOutOfBoundsException("index:" + indeks);
+        //int nyIndeks = (indeks==antall)?indeks-1:indeks;
 
-        //legg inn:
+
+        //lager en ny node med verdi -> T verdi:
         Node<T> nyNode = new Node<>(verdi);
 
         //Listen har et element eller tom:
         boolean erLagtTil = false;
-        if(hode==hale||hode==null) {
+        if(hode==null) {
             erLagtTil = leggInn(verdi);
         }
         if(!erLagtTil) {
-            //indeks er posisjonen etter hale eller posisjonen til hale:
-            if (indeks >= antall || indeks == antall - 1) {
-                nyNode.forrige = hale;
-                hale.neste = nyNode;
-                hale = nyNode;
-                hale.neste = null;
-            }
-            //hvis index == 0:
-            else if (indeks == 0) {
+            //for indeks i start posisjonen:
+            if (indeks == 0) {
                 nyNode.forrige = null;
                 nyNode.neste = hode;
                 hode.forrige = nyNode;
                 hode = nyNode;
             }
-            //Mellom to noder:
-            else {
-                Node<T> current = finnNode(indeks);
-                nyNode.neste = current.neste;
-                nyNode.forrige = current;
-                current.neste = nyNode;
-                current.neste.forrige = nyNode;
+            //hvis index <= antall:
+            else{
+                Node<T> current = finnNode(indeks-1);
+                if(current==hale){
+                    nyNode.forrige = hale;
+                    nyNode.neste = null;
+                    hale.neste = nyNode;
+                    hale = nyNode;
+                }else{
+                    nyNode.neste=current.neste;
+                    nyNode.forrige=current;
+                    current.neste.forrige=nyNode;
+                    current.neste=nyNode;
+                }
             }
             antall++;
             endringer++;

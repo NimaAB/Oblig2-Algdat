@@ -46,5 +46,18 @@ public class Main {
         liste.forEach(s -> System. out .print(s + " " ));
         System. out .println();
         for (String s : liste) System. out .print(s + " " );
+
+        DobbeltLenketListe<Integer> ltest = new DobbeltLenketListe<>();
+
+        ltest.leggInn(0, 4);  // ny verdi i tom liste
+        ltest.leggInn(0, 2);  // ny verdi legges forrest
+        ltest.leggInn(2, 6);  // ny verdi legges bakerst
+        ltest.leggInn(1, 3);  // ny verdi nest forrest
+        ltest.leggInn(3, 5);  // ny verdi nest bakerst
+        ltest.leggInn(0, 1);  // ny verdi forrest
+        ltest.leggInn(6, 7);
+
+        System.out.println(ltest.toString());
+
     }
 }
