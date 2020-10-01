@@ -37,11 +37,11 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
     ```
 * Oppgave 2: 
     ```
-    **2a)** toString() metoden er løst slik at den skal passe om listen er tom.
-    Etter har vi en StringBuilder objekt som skal legges til verdier i hver iterasjon av while-løkken:
-    "current=hode; while(current != hale)" det vil si at vi har en pekker som pekker på hoden 
-    av listen og oppdatrers til dens neste node for hver iterasjon frem til hale noden. 
-    Og for omvendtString() vi bruker samme logikk, men motsatt vei. fra hale til hode.
+    **2a)** toString() metoden er løst slik: Den begynner med å lage en pekker curr fra hode noden, etter på 
+    instansierer den en StringJoiner objekt med delimiter", " og strarttegn "[" og sluttegn "]".
+    Etter det har vi en while-løkke som fortsetter frem til curr pukker på null. dvs. etter hale.
+    Og for hver iterasjon legges det en string av node vedien og så peker den på neste node ved hjelp av neste attributten.
+    Og for omvendtString() vi bruker samme logikk, men motsatt vei. fra hale til null.
     
     **2b)** for legginn(T verdi) vi har først parameter sjekk om "verdi != null" etter på har vi to tilfeller:
     hvis listen er tom, da sier vi at hode og hale pekkere er node(verdi). Den andre tilfillen er om listen har en eller flere noder,
