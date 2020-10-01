@@ -388,7 +388,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove(){
-            throw new UnsupportedOperationException();
+            if(antall==0)
+                throw new IllegalStateException("The list i empty");
+            if(endringer!=iteratorendringer)
+                throw new ConcurrentModificationException("Changes are"+
+                        " not equal.");
+
+            fjernOK = false;
+            //listen har et element:
+            if (hode == hale) {
+                hode = hale = null;
+            }
+            //denne har gaatt over hale:
+            else if (denne==null) {
+                hale.forrige.neste = null;
+                hale = hale.forrige;
+            }
+            //hvis pekeren er hode eller hode sin neste node:
+            else if (denne == hode.neste || denne == hode) {
+                denne.forrige = null;
+                hode = denne;
+            }
+            //ellers saa hode er ingen av tilfellene over og denne peker paa et
+            //tilfeldig node i midten:
+            else {
+                denne.forrige.forrige.neste = denne;
+                denne.forrige = denne.forrige.forrige;
+            }
+
+            iteratorendringer++;
+            endringer++;
+            antall--;
         }
 
     } // class DobbeltLenketListeIterator
