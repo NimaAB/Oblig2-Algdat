@@ -79,13 +79,13 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 	```
 * Oppgave 5: 
 	```
-	- leggInn(indeks,verdi) begynner med en parameter kontroll ved hjelp av indeksKontroll(indeks,false) og Objects.requireNonNull(verdi,melding). Indekser større en antall blir satt lik antall. 
-	- Vi har deklarert en ny node som har verdien lik som i parameteren.
-	- Vi har tatt hensyn på 4 tilfeller. 1) Listen er tom. 2) Vi legger ny noden bakerst 3) Vi legger ny noden forrest og 4) Vi legger ny noden mellom to noder.
+	- leggInn(indeks,verdi) begynner med en parameter kontroll ved hjelp av Objects.requireNonNull(verdi,melding) og en if-setning som sjekker om indeks er mindre enn 0 eller indeks er større eller lik "antall".
+	- Vi har deklarert en ny node som har verdien lik som i parameteren kalt "nyNode".
+	- Vi har tatt hensyn på 4 tilfeller. 1) Listen er tom. 2) Vi legger "nyNode" bakerst 3) Vi legger "nyNode" forrest og 4) Vi legger "nyNode" mellom to noder.
 		1. Vi kaller leggInn(verdi) metoden i denne tilfelle.
-		2. Vi setter ny nodens forrige peker lik hale og hale sin neste peker lik ny noden. Etter det setter vi ny noden lik hale.
+		2. Vi setter "nyNode" sin forrige peker lik hale og hale sin neste peker lik "nyNode". Etter det setter vi "nyNode" lik hale.
 		3. Her er det samme logikk som i tilfelle 3, forskjellen er at det er hode vi jobber med og at pekere har annerledes tilordninger.
-		4. Her finner vi noden vi skal flytte slik at ny noden får plass ved hjelp av finnNode(indeks) lagret i node variablen "current". "current" flytter seg foran og får en ny indeks, mens ny noden får "current" sin plass. Den har vi gjort ved å sette pekere til nodene riktig.
+		4. Her finner vi noden vi skal flytte slik at "nyNode" får plass ved hjelp av finnNode(indeks) som vi har lagret i node variablen "current". Noden "current" flytter seg foran og får en ny indeks, mens "nyNode" får "current" sin plass. Den har vi gjort ved å sette pekere til nodene riktig.
 	- Her øker variablene "antall" og "endringer".
 	```
 * Oppgave 6:
