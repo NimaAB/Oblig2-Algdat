@@ -321,34 +321,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        if(hode == null){
-            return "[]";
-        }
-        if(hale == hode){
-            return "["+hode.verdi+"]";
-        }
-        StringBuilder listStr=new StringBuilder("[");
+        StringJoiner sj=new StringJoiner(", ","[","]");
         Node<T> current = hode;
-        while(current!=hale){
-            listStr.append(current.verdi).append(", ");
+        while(current!=null){
+            sj.add(current.verdi.toString());
             current = current.neste;
         }
-        listStr.append(hale.verdi).append("]");
-        return listStr.toString();
+        return sj.toString();
     }
 
     public String omvendtString() {
-        if(hode ==  hale || hode == null){
-            return toString();
-        }
-        StringBuilder listStr=new StringBuilder("[");
+        StringJoiner sj=new StringJoiner(", ","[","]");
         Node<T> current = hale;
-        while(current!=hode){
-            listStr.append(current.verdi).append(", ");
+        while(current!=null){
+            sj.add(current.verdi.toString());
             current = current.forrige;
         }
-        listStr.append(hode.verdi).append("]");
-        return listStr.toString();
+        return sj.toString();
     }
 
     @Override
