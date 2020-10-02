@@ -105,13 +105,28 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 	```
 * Oppgave 7:
 	```
-	- I nullstill() metoden har vi en node kalt "current" satt lik hode.
-	- Vi har brukt en while-loop som itererer listen så lenge hode er ikke null. Så lenge hode er ikke null, hode blir satt lik sin neste node. I denne metoden øker vi endringer og antall synker.
+	- I nullstill() metoden går vi gjennom listen fra hode og sletter hode noden for hver iterasjon
+	deklarerer den neste noden etter hode til som hode. Til det når hode==hale.
+	Det vil si at listen har en node igjen som har både hale og hode pekere, slettes de
+	utenfor løkken.(ideen er å slette forfra til den er tom)
 	```
 * Oppgave 8:
      ```
      Vi har følget etter instruksjonen fra oppgaven.
      ```
+     
+     
+* Oppgave 9: 
+	```
+	Metoden starter med å sjekke om listen er tom eller ei, Og om 	iteratorendringer er lik endringer.
+	I remove metoden sletter vi noden (denne) ved å ta hensyn til følgende: 
+		1- når "denne" har passert hale noden.
+		2- når listen har et element, slettes den noden.
+		3- når "denne" er hodens neste node, så slettes hoden selv.(den er til venstre for denne).
+		4- når hode == "denne", hode slettes og hode sin nabo blir den nye hoden. 
+		5- når denne peker på en tilfeldig node i midten, slettes noden som er bak "denne".
+	
+	```
 
 
 
