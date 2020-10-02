@@ -405,9 +405,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 hale = hale.forrige;
             }
             //hvis pekeren er hode eller hode sin neste node:
-            else if (denne == hode.neste || denne == hode) {
+            else if (denne == hode.neste) {
                 denne.forrige = null;
                 hode = denne;
+            }else if(denne==hode){
+                hode = denne.neste;
+                denne.neste.forrige=null;
+                denne = null;
+
             }
             //ellers saa hode er ingen av tilfellene over og denne peker paa et
             //tilfeldig node i midten:
