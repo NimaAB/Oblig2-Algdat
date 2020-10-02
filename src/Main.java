@@ -58,6 +58,8 @@ public class Main {
         ltest.leggInn(6, 7);
 
         System.out.println(ltest.toString());
+        ltest.nullstill();
+        System.out.println(ltest.toString());
 
     }
 }

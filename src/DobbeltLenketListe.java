@@ -307,16 +307,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void nullstill() {
-        for(Node<T> curr = hode; curr != null; ){
-            Node<T> neste = curr.neste;
-            curr.verdi = null;
-            curr.neste = null;
-            curr.forrige = null;
-            curr = neste;
-            antall--;
+        while (hode!=hale){
+            hode.neste.forrige = null;
+            hode = hode.neste;
             endringer++;
         }
         hode = hale = null;
+        endringer++;
+        antall=0;
     }
 
     @Override
