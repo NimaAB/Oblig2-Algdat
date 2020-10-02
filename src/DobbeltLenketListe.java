@@ -388,7 +388,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove(){
-            if(antall==0)
+            if(tom() || !fjernOK)
                 throw new IllegalStateException("The list i empty");
             if(endringer!=iteratorendringer)
                 throw new ConcurrentModificationException("Changes are"+
