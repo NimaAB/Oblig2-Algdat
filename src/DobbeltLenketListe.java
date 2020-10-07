@@ -425,9 +425,31 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
     } // class DobbeltLenketListeIterator
+    /*private static <T> T[] toArray(Liste<T> list){
+        Object [] l = new Object[list.antall()];
+        int i=0;
+        for (T el:list) {
+            l[i] = el;
+            i++;
+        }
+        return (T[])l;
+    }*/
 
-    public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
+    public static <T> void sorter(Liste<T> liste, Comparator<T> c) {
         throw new UnsupportedOperationException();
+       /* //bobble sort:
+        T [] l = toArray(liste);
+
+        for(int j = l.length; j >= 0; --j){
+            for(int k = 0; k < l.length-1;++k){
+                if(c.compare(l[k],l[k+1])>0){
+                    T temp = l[k];
+                    l[k] = l[k+1];
+                    l[k+1] = temp;
+                }
+            }
+        }
+    */
     }
 
 } // class DobbeltLenketListe
