@@ -1,12 +1,7 @@
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
-import java.util.Comparator;
-import java.util.ConcurrentModificationException;
-import java.util.NoSuchElementException;
-import java.util.StringJoiner;
+import java.util.*;
 
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -425,7 +420,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
     } // class DobbeltLenketListeIterator
-    /*private static <T> T[] toArray(Liste<T> list){
+    private static <T> T[] toArray(Liste<T> list){
         Object [] l = new Object[list.antall()];
         int i=0;
         for (T el:list) {
@@ -433,11 +428,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             i++;
         }
         return (T[])l;
-    }*/
+    }
 
     public static <T> void sorter(Liste<T> liste, Comparator<T> c) {
-        throw new UnsupportedOperationException();
-       /* //bobble sort:
+       //bobble sort:
         T [] l = toArray(liste);
 
         for(int j = l.length; j >= 0; --j){
@@ -449,7 +443,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 }
             }
         }
-    */
+        liste.nullstill();
+        liste = new DobbeltLenketListe<>(l);
     }
 
 } // class DobbeltLenketListe
