@@ -17,7 +17,7 @@ Oppgaven er levert av følgende studenter:
 * Nima Abdollahi, S341890, s341890@oslomet.no
 * Glaysa Fernandez, s344047, s344047@oslomet.no
 
-Vi har brukt git til å dokumentere arbeidet vårt. Vi har **59** commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
+Vi har brukt git til å dokumentere arbeidet vårt. Vi har **71** commits totalt, og hver logg-melding beskriver det vi har gjort av endringer.
 
 I oppgaven har vi hatt følgende arbeidsfordeling: 
 * Vi har i fellesskap løst alle oppgavene fra og med 1 til og med 8. 
@@ -127,7 +127,11 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 		5- når denne peker på en tilfeldig node i midten, slettes noden som er bak "denne".
 	
 	```
-
+* Oppgave 10: 
+	```
+	I sorter metoden har vi prøvd å implementere bobble sort algoritmen ved hjelp av et array.
+	Men metoden funker ikke. 
+	``` 
 
 
 
